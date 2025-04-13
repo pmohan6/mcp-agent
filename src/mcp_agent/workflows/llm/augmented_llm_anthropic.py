@@ -130,13 +130,13 @@ class AnthropicAugmentedLLM(AugmentedLLM[MessageParam, Message]):
         response = await self.aggregator.list_tools()
         available_tools: List[ToolParam] = []
         for tool in response.tools:
-            if tool.name == 'google-workspace-server-search_emails':
-                tool.inputSchema['properties']['query']['description'] = 'Gmail search query'
-            available_tools.append({
-                "name": tool.name,
-                "description": tool.description,
-                "input_schema": json.dumps(tool.inputSchema),
-            })
+            if tool.name != 'google-workspace-server-search_emails':
+                print('HEREEEEE')
+                available_tools.append({
+                    "name": tool.name,
+                    "description": tool.description,
+                    "input_schema": tool.inputSchema,
+                })
 
         # available_tools: List[ToolParam] = [
         #     {
