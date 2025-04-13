@@ -164,6 +164,9 @@ class Agent(MCPAggregator):
 
         # Add function tools
         for tool in self._function_tool_map.values():
+            if tool.name == 'google-workspace-server-search_emails':
+                tool.parameters['inputSchema']['properties']['query']['description'] = 'Gmail search query'
+
             result.tools.append(
                 Tool(
                     name=tool.name,
