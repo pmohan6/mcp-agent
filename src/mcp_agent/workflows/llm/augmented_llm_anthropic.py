@@ -135,7 +135,7 @@ class AnthropicAugmentedLLM(AugmentedLLM[MessageParam, Message]):
             available_tools.append({
                 "name": tool.name,
                 "description": tool.description,
-                "input_schema": tool.inputSchema,
+                "input_schema": json.dumps(tool.inputSchema),
             })
 
         # available_tools: List[ToolParam] = [
